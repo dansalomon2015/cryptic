@@ -5,7 +5,7 @@ import { persistor, store } from "@storage";
 import { PersistGate } from "redux-persist/lib/integration/react";
 
 describe("Testing Welcome screen", () => {
-    it("renders correctly", () => {
+    it("Renders correctly", () => {
         render(
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
