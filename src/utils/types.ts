@@ -2,6 +2,7 @@ export interface RootStateType {
     followedCurrencies: Currency[];
     currentCurrency?: Currency;
     firstLaunch: boolean;
+    currenciesSelectionDone: boolean;
 }
 
 export type RootReducerType = {

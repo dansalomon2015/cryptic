@@ -27,6 +27,14 @@ let persistor = persistStore(store);
 type AppStateType = ReturnType<typeof store.getState>;
 const useAppSelector: TypedUseSelectorHook<AppStateType> = useSelector;
 
-const { followCurrency, updateLaunchStatus } = appSlice.actions;
+const { followCurrency, updateLaunchStatus, unfollowCurrency, updateCurrenciesSelectionStatus } = appSlice.actions;
 
-export { store, persistor, useAppSelector, followCurrency, updateLaunchStatus };
+export {
+    store,
+    persistor,
+    useAppSelector,
+    followCurrency,
+    updateLaunchStatus,
+    unfollowCurrency,
+    updateCurrenciesSelectionStatus,
+};

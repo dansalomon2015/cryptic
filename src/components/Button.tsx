@@ -1,12 +1,31 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View, TouchableOpacity, StyleSheet, ViewProps, ViewStyle, TextStyle } from "react-native";
+import { Colors, FontSize, ren } from "@utils";
+import { Text, TextMedium } from "@components";
 
-export const Button = () => {
+interface Props extends ViewProps {
+    title?: string;
+    onPress?: () => void;
+    buttonStyle?: ViewStyle;
+    titleStyle?: TextStyle;
+}
+
+export const Button: React.FC<Props> = ({ title, onPress, buttonStyle, titleStyle }) => {
     return (
-        <View>
-            <Text>Button</Text>
-        </View>
+        <TouchableOpacity activeOpacity={0.6} style={[styles.button, buttonStyle]} onPress={onPress}>
+            <TextMedium style={titleStyle} color={Colors.grey} fontSize={FontSize.H3}>
+                {title}
+            </TextMedium>
+        </TouchableOpacity>
     );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    button: {
+        backgroundColor: Colors.white,
+        paddingVertical: 10 * ren,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 100,
+    },
+});

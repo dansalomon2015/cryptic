@@ -6,11 +6,11 @@ import { MainStack } from "./MainStack";
 
 export default () => {
     const firstLaunch = useAppSelector((state) => state.rootReducer.firstLaunch);
-    const followed = useAppSelector((state) => state.rootReducer.followedCurrencies);
+    const currenciesSelectionDone = useAppSelector((state) => state.rootReducer.currenciesSelectionDone);
 
     return (
         <NavigationContainer>
-            {firstLaunch ? <Welcome /> : !followed.length ? <CurrecncyList /> : <MainStack />}
+            {firstLaunch ? <Welcome /> : !currenciesSelectionDone ? <CurrecncyList /> : <MainStack />}
         </NavigationContainer>
     );
 };
