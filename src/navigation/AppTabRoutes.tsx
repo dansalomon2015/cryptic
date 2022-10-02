@@ -49,6 +49,7 @@ export const AppTabRoutes = () => {
         >
             <Tab.Screen
                 name={"Prices"}
+                // @ts-ignore
                 component={Prices}
                 options={{
                     tabBarIcon: ({ focused }) => {

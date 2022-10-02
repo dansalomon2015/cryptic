@@ -2,9 +2,9 @@ import React from "react";
 import { wsUrl } from "@api";
 import { useAppSelector } from "@storage";
 
-type Props = {};
+type Props = { currencyId?: string };
 
-export const useWebSocket = ({}: Props) => {
+export const useWebSocket = ({ currencyId }: Props) => {
     const followed = useAppSelector((state) => state.rootReducer.followedCurrencies);
     const [data, setData] = React.useState<{ [k: string]: string }>({});
 
@@ -17,7 +17,9 @@ export const useWebSocket = ({}: Props) => {
             return acc;
         }, "");
 
-        const ws = new WebSocket(wsUrl + markets);
+        let ws = new WebSocket(wsUrl + markets);
+
+        if (currencyId) ws = new WebSocket(wsUrl + currencyId);
 
         console.log(wsUrl + markets);
 

@@ -31,7 +31,7 @@ export const CurrecncyList = () => {
         <Container>
             <View style={styles.main}>
                 <View>
-                    <TextBold textAlign="center" fontSize={FontSize.H3}>
+                    <TextBold textAlign="center" fontSize={FontSize.H4 + 4}>
                         {I18n.t("currencyList.select_currencies")}
                     </TextBold>
                     <View style={styles.searchContainer}>

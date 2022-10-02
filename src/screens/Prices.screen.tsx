@@ -1,33 +1,48 @@
-import React from "react";
-import { FlatList, StyleSheet, View } from "react-native";
-import { Container, Text } from "@components";
-import { useWebSocket } from "@hooks";
-import { useEffect } from "react";
+import React, { FC } from "react";
+import { Container, TextBold, TextMedium } from "@components";
+import { View, Text, StyleSheet } from "react-native";
+import { Colors, FontSize, rem } from "@utils";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import CurrencyItem from "src/components/CurrencyItem";
+import { useAppSelector } from "@storage";
+import { AppTabNavigationProps } from "src/navigation/AppTabRoutes";
 
-export const Prices = () => {
-    const { data } = useWebSocket({});
-    const [list, setList] = React.useState<{ [key: string]: string }[]>([]);
+type Props = AppTabNavigationProps<"Prices">;
 
-    useEffect(() => {
-        setList([...list, data]);
-    }, [data]);
-
+export const Prices: FC<Props> = ({ navigation }) => {
+    const followed = useAppSelector((state) => state.rootReducer.followedCurrencies);
     return (
         <Container>
-            <View style={{ flex: 1 }}>
-                <FlatList
-                    data={list}
-                    renderItem={({ item, index }) => {
-                        return <Text key={index}>{JSON.stringify(item)}</Text>;
-                    }}
-                    scrollEnabled
-                    style={{ flex: 1 }}
-                />
+            <View style={{ flex: 1, padding: 16 }}>
+                <View style={styles.header}>
+                    <View>
+                        <TextBold fontSize={FontSize.H3}>Cryptic</TextBold>
+                    </View>
+                    <Icon
+                        name="format-align-right"
+                        color={Colors.white}
+                        size={24 * rem}
+                        onPress={() => navigation.navigate("CurrencyList")}
+                    />
+                </View>
+
+                <TextMedium fontSize={FontSize.H4} mt={20} mb={10}>
+                    Wishlist
+                </TextMedium>
+                {followed.map((c, i) => (
+                    <CurrencyItem key={i} currency={c} />
+                ))}
             </View>
         </Container>
     );
 };
 
-export default Prices;
+const styles = StyleSheet.create({
+    header: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+});
 
-const styles = StyleSheet.create({});
+export default Prices;

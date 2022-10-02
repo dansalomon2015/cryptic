@@ -7,3 +7,4 @@ export * from "./Container";
 export * from "./Button";
 export * from "./Chips";
 export * from "./SearchInput";
+export * from "./CurrencyItem";
